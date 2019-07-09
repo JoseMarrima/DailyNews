@@ -1,4 +1,4 @@
-package com.example.dailynews.requests;
+package com.example.dailynews.util;
 
 import android.util.Log;
 
@@ -10,8 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 
-import com.example.dailynews.util.AppExecutors;
-import com.example.dailynews.util.Resource;
+import com.example.dailynews.model.network.ApiResponse;
 
 // CacheObject: Type for the Resource data. (database cache)
 // RequestObject: Type for the API response. (network request)

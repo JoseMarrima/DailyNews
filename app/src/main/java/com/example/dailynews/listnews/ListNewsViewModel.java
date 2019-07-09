@@ -1,4 +1,6 @@
-package com.example.dailynews.listnewsarticles;
+package com.example.dailynews.listnews;
 
-public class ListNewsArticlesViewModel {
+import androidx.lifecycle.ViewModel;
+
+public class ListNewsViewModel extends ViewModel {
 }

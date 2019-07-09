@@ -1,4 +1,4 @@
-package com.example.dailynews.requests;
+package com.example.dailynews.model.network;
 
 import com.example.dailynews.model.NewsArticle;
 import com.google.gson.annotations.Expose;
