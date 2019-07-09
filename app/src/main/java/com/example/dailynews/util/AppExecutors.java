@@ -9,12 +9,10 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class AppExecutors {
-
-    @Inject
-    public AppExecutors() {
-    }
 
     private final Executor mDiskIO = Executors.newSingleThreadExecutor();
 

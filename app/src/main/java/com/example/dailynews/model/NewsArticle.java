@@ -1,6 +1,8 @@
 package com.example.dailynews.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -19,6 +21,9 @@ public class NewsArticle {
     @SerializedName("description")
     @Expose
     private String description;
+
+    @PrimaryKey
+    @NonNull
     @SerializedName("url")
     @Expose
     private String url;
