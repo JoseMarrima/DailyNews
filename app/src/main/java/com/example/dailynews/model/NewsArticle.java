@@ -9,9 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "news_table")
 public class NewsArticle {
-    @SerializedName("source")
-    @Expose
-    private Source source;
+
     @SerializedName("author")
     @Expose
     private String author;
@@ -37,13 +35,7 @@ public class NewsArticle {
     @Expose
     private String content;
 
-    public Source getSource() {
-        return source;
-    }
 
-    public void setSource(Source source) {
-        this.source = source;
-    }
 
     public String getAuthor() {
         return author;

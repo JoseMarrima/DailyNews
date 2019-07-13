@@ -7,15 +7,16 @@ import androidx.room.Room;
 import com.example.dailynews.model.Repository;
 import com.example.dailynews.model.local.NewsDao;
 import com.example.dailynews.model.local.NewsDatabase;
+import com.example.dailynews.model.network.ListNewsService;
 import com.example.dailynews.util.AppExecutors;
 import com.example.dailynews.util.Constants;
+import com.example.dailynews.util.LiveDataCallAdapterFactory;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.dailynews.model.local.NewsDatabase.DATABASE_NAME;
@@ -27,9 +28,15 @@ public class AppModule {
     static Retrofit provideRetrofitInstance() {
         return new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    @Singleton
+    @Provides
+    static ListNewsService provideListNewsService(Retrofit retrofit) {
+        return retrofit.create(ListNewsService.class);
     }
 
     @Singleton
@@ -46,13 +53,13 @@ public class AppModule {
 
     @Singleton
     @Provides
-    static Repository provideRepository(NewsDao newsDao) {
-        return new Repository(newsDao);
+    static AppExecutors provideAppExecutors() {
+        return new AppExecutors();
     }
 
     @Singleton
     @Provides
-    static AppExecutors provideAppExecutors(NewsDao newsDao) {
-        return new AppExecutors();
+    static Repository provideRepository(NewsDao newsDao, AppExecutors appExecutors, ListNewsService service) {
+        return new Repository(newsDao, appExecutors, service);
     }
 }

@@ -17,6 +17,11 @@ import java.util.List;
 public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListNewsAdapterViewHolder> {
     private List<NewsArticle> newsArticles = new ArrayList<>();
 
+    public void setNewsArticles(List<NewsArticle> newsArticles) {
+        this.newsArticles = newsArticles;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ListNewsAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,9 +37,7 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListNe
 
     @Override
     public int getItemCount() {
-        if (newsArticles != null) {
-            return newsArticles.size();
-        }
+        if (newsArticles != null) return newsArticles.size();
         return 0;
     }
 

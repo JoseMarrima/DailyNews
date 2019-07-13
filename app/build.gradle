@@ -63,7 +63,7 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockito_version"
 
     // Dagger
-    def dagger_version = "2.22.1"
+    def dagger_version = "2.23"
 
     // Dagger2 core
     implementation "com.google.dagger:dagger:$dagger_version"

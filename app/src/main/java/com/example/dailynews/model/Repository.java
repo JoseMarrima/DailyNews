@@ -1,5 +1,7 @@
 package com.example.dailynews.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
@@ -23,13 +25,16 @@ import retrofit2.Retrofit;
 @Singleton
 public class Repository {
 
+    private static final String TAG = "Repository";
+
     private final NewsDao newsDao;
     private AppExecutors appExecutors;
-    private Retrofit retrofit;
+    private ListNewsService listNewsService;
 
-    @Inject
-    public Repository(NewsDao newsDao) {
+    public Repository(NewsDao newsDao, AppExecutors appExecutors, ListNewsService listNewsService) {
         this.newsDao = newsDao;
+        this.appExecutors = appExecutors;
+        this.listNewsService = listNewsService;
     }
 
     public LiveData<Resource<List<NewsArticle>>> getNewsArticles() {
@@ -37,8 +42,10 @@ public class Repository {
 
             @Override
             protected void saveCallResult(@NonNull ListNewsResponse item) {
+                Log.i(TAG, "saveCallResult: SAVING THE CALL" + item);
+                NewsArticle[] newsArray = new NewsArticle[item.getArticles().size()];
                 if(item.getArticles() != null) {
-                    newsDao.insertRecipes((NewsArticle[]) item.getArticles().toArray());
+                    newsDao.insertRecipes((NewsArticle[]) item.getArticles().toArray(newsArray));
                 }
             }
 
@@ -56,7 +63,7 @@ public class Repository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<ListNewsResponse>> createCall() {
-                return retrofit.create(ListNewsService.class).getNewsArticles(Constants.API_KEY);
+                return listNewsService.getNewsArticles(Constants.SOURCE, Constants.API_KEY);
             }
         }.getAsLiveData();
     }

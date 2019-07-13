@@ -6,4 +6,7 @@ public class Constants {
 
     // Newsapi.org api key
     public static final String API_KEY = "83dbe5057f1e4920a636cdfe06502b36";
+
+    // news source
+    public static final String SOURCE = "techcrunch";
 }
