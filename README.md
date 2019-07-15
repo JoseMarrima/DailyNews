@@ -1,6 +1,6 @@
 # DailyNews
 
-This is a News application based on Model–View–Viewmodel(MVVM) architecture that uses News API to fetch data and display the News on the screen.
+This is a News application based on Model–View–Viewmodel(MVVM) architecture that uses NewsAPI.org to fetch data, and display the News on the screen. The data is available Offline.
 
 ## Screenshots and Gif
 
@@ -17,7 +17,6 @@ This is a News application based on Model–View–Viewmodel(MVVM) architecture 
 * Mockito
 * JUnit5
 * Architecture components testing
-* ReactiveStreams
 * Lifecycle
 * LiveData
 * ViewModel
@@ -25,7 +24,6 @@ This is a News application based on Model–View–Viewmodel(MVVM) architecture 
 * Android Architecture Components
 * MVVM Architecture
 * AppCompat, CardView, RecyclerView
-* RxAndroid
 
 ## Requirements
 
